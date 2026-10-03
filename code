@@ -1,1 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Portfolio | Om Adwani</title>
+<style>
+:root{
+  --bg:#f5f7fb;
+  --dark:#111827;
+  --text:#172033;
+  --muted:#64748b;
+  --primary:#4f46e5;
+  --secondary:#06b6d4;
+  --card:#ffffff;
+  --border:#e5e7eb;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 10% 5%,rgba(79,70,229,.12),transparent 28%),
+    radial-gradient(circle at 90% 10%,rgba(6,182,212,.12),transparent 25%),
+    var(--bg);
+  line-height:1.65;
+}
+.container{width:min(1100px,92%);margin:auto}
 
+nav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--border);
+}
+.nav{
+  min-height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{
+  font-size:20px;
+  font-weight:900;
+  color:var(--dark);
+}
+.navlinks{
+  display:flex;
+  gap:25px;
+}
+.navlinks a{
+  text-decoration:none;
+  color:var(--text);
+  font-size:14px;
+  font-weight:700;
+}
+.navlinks a:hover{color:var(--primary)}
+
+.hero{
+  min-height:650px;
+  display:flex;
+  align-items:center;
+  color:white;
+  background:linear-gradient(135deg,#111827,#1e1b4b 55%,#164e63);
+  position:relative;
+  overflow:hidden;
+}
+.hero:before,.hero:after{
+  content:"";
+  position:absolute;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:50%;
+}
+.hero:before{width:650px;height:650px;right:-260px;top:-250px}
+.hero:after{width:400px;height:400px;left:-240px;bottom:-230px}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.4fr .6fr;
+  gap:50px;
+  align-items:center;
+  position:relative;
+  z-index:2;
+}
+.badge{
+  display:inline-block;
+  padding:7px 13px;
+  border-radius:999px;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.2);
+  font-size:13px;
+}
+h1{
+  font-size:clamp(48px,7vw,78px);
+  line-height:1;
+  letter-spacing:-3px;
+  margin:20px 0;
+}
+.hero h1 span{
+  background:linear-gradient(90deg,#93c5fd,#67e8f9);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.hero p{
+  color:#dbeafe;
+  max-width:700px;
+  font-size:18px;
+}
+.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{
+  padding:12px 18px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:800;
+  font-size:14px;
+}
+.btn-primary{background:white;color:#1e1b4b}
+.btn-secondary{
+  color:white;
+  border:1px solid rgba(255,255,255,.3);
+  background:rgba(255,255,255,.08);
+}
+
+.avatar{
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  margin:auto;
+  display:grid;
+  place-items:center;
+  font-size:82px;
+  font-weight:900;
+  color:white;
+  background:linear-gradient(145deg,#4f46e5,#06b6d4);
+  box-shadow:0 30px 80px rgba(0,0,0,.3);
+  border:8px solid rgba(255,255,255,.12);
+}
+
+section{padding:75px 0}
+.eyebrow{
+  color:var(--primary);
+  text-transform:uppercase;
+  font-weight:900;
+  letter-spacing:1.5px;
+  font-size:12px;
+}
+h2{
+  font-size:42px;
+  line-height:1.1;
+  margin:8px 0 14px;
+}
+.lead{color:var(--muted);max-width:750px}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:28px;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:25px;
+  box-shadow:0 15px 40px rgba(15,23,42,.07);
+}
+.card h3{margin-top:8px}
+.card p{color:var(--muted);font-size:15px}
+.icon{font-size:30px}
+
+.about{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+.panel{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:30px;
+  box-shadow:0 15px 40px rgba(15,23,42,.07);
+}
+
+.skills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.skill{
+  background:#eef2ff;
+  color:#3730a3;
+  padding:8px 13px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:800;
+}
+
+.project{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:flex-start;
+}
+.project:not(:last-child){
+  padding-bottom:20px;
+  margin-bottom:20px;
+  border-bottom:1px solid var(--border);
+}
+.project h3{margin:0}
+.project p{margin:6px 0;color:var(--muted)}
+.tag{
+  white-space:nowrap;
+  font-size:12px;
+  font-weight:800;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#ecfeff;
+  color:#155e75;
+}
+
+.cta{
+  text-align:center;
+  color:white;
+  background:linear-gradient(135deg,#1e1b4b,#164e63);
+  border-radius:30px;
+  padding:55px 25px;
+}
+.cta h2{margin-top:0}
+.cta p{color:#cbd5e1}
+
+footer{
+  background:#111827;
+  color:#cbd5e1;
+  padding:40px 0;
+}
+footer strong{color:white}
+
+@media(max-width:800px){
+  .hero-grid,.about{grid-template-columns:1fr}
+  .avatar{width:210px;height:210px;font-size:60px}
+  .cards{grid-template-columns:1fr}
+  .navlinks{gap:12px}
+}
+@media(max-width:520px){
+  .navlinks a:nth-child(3){display:none}
+  h1{font-size:48px}
+  h2{font-size:34px}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="container nav">
+    <div class="logo">OA.</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="statistics.html">Statistics</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="badge">Student Portfolio • IIT Madras</span>
+      <h1>Hello, I'm <span>Om Adwani</span>.</h1>
+      <p>
+        I am a student pursuing the IIT Madras BS Degree in
+        Data Science and Applications. I am interested in programming,
+        data, statistics, artificial intelligence and building practical projects.
+      </p>
+      <div class="buttons">
+        <a class="btn btn-primary" href="#projects">Explore My Projects</a>
+        <a class="btn btn-secondary" href="statistics.html">View Statistics</a>
+      </div>
+    </div>
+
+    <div class="avatar">OA</div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <div class="eyebrow">01 • About Me</div>
+    <h2>A student who learns by building.</h2>
+    <p class="lead">
+      My approach to learning is simple: understand the concept, practice it,
+      and then use it to build something. Through my coursework and personal
+      projects, I am developing a foundation in programming, statistics,
+      mathematics and data science.
+    </p>
+
+    <div class="about">
+      <div class="panel">
+        <h3>🎓 Education</h3>
+        <p>
+          <strong>Indian Institute of Technology Madras</strong><br>
+          BS in Data Science and Applications
+        </p>
+        <p>
+          My studies include mathematics, statistics, programming,
+          data handling and other foundations of data science.
+        </p>
+      </div>
+
+      <div class="panel">
+        <h3>🎯 Areas of Interest</h3>
+        <p>
+          I am especially interested in understanding how data can be
+          processed and used to solve practical problems.
+        </p>
+        <div class="skills">
+          <span class="skill">Data Science</span>
+          <span class="skill">Python</span>
+          <span class="skill">Statistics</span>
+          <span class="skill">SQL</span>
+          <span class="skill">Artificial Intelligence</span>
+          <span class="skill">Machine Learning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="eyebrow">02 • Skills & Learning</div>
+    <h2>What I am learning</h2>
+    <p class="lead">
+      These are the areas I am currently developing through coursework,
+      practice and projects.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🐍</div>
+        <h3>Python Programming</h3>
+        <p>
+          Working with functions, loops, conditions, lists, dictionaries,
+          file handling, recursion, searching and basic algorithms.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📊</div>
+        <h3>Statistics</h3>
+        <p>
+          Learning probability, random variables, PMF, joint distributions,
+          conditional probability and descriptive statistics.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🗄️</div>
+        <h3>SQL & Data</h3>
+        <p>
+          Practising data filtering, sorting, logical conditions and
+          querying structured datasets using SQL.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="eyebrow">03 • Projects</div>
+    <h2>Things I have built</h2>
+    <p class="lead">
+      Small projects help me turn programming concepts into practical experience.
+    </p>
+
+    <div class="panel" style="margin-top:28px">
+
+      <div class="project">
+        <div>
+          <h3>🎮 Tic-Tac-Toe with Minimax</h3>
+          <p>
+            A Python Tic-Tac-Toe game where the computer uses the Minimax
+            algorithm to choose its moves. This project helped me understand
+            recursion, game states, backtracking and algorithmic thinking.
+          </p>
+        </div>
+        <span class="tag">Python</span>
+      </div>
+
+      <div class="project">
+        <div>
+          <h3>🔎 Mini Search Engine</h3>
+          <p>
+            A Python project that searches through text files, counts matching
+            words and creates a simple relevance score to rank the results.
+          </p>
+        </div>
+        <span class="tag">Python • Search</span>
+      </div>
+
+      <div class="project">
+        <div>
+          <h3>📈 Countries Statistics Analysis</h3>
+          <p>
+            A statistics project using a dataset of countries to explore
+            population, area and continental distribution using descriptive
+            statistics and data interpretation.
+          </p>
+        </div>
+        <span class="tag">Statistics</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="cta">
+      <div class="eyebrow" style="color:#67e8f9">04 • Explore</div>
+      <h2>Explore my Statistics project</h2>
+      <p>
+        Visit the Statistics page to see the dataset, statistical analysis,
+        observations and complete country data.
+      </p>
+      <a class="btn btn-primary" href="statistics.html">Open Statistics Page →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <strong>Om Adwani — Student Portfolio</strong>
+    <p style="margin:6px 0 0">
+      IIT Madras BS in Data Science and Applications
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
